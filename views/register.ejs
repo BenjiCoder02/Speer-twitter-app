@@ -1,0 +1,26 @@
+<%- include("partials/header"); -%>
+
+<form action="/register" method="POST">
+    <label>First Name: 
+        <input type="text" name="firstName" placeholder="First Name" required/>
+    </label>
+    <label>Last Name: 
+        <input type="text" name="lastName" placeholder="Last Name"required/>
+    </label>
+    <label for="email">E mail
+        <input type="text" name="username" placeholder="email@placeholder.com" required/>
+    </label>
+    <label for="password">Password
+        <input type="text" name="password" placeholder="password" required/>
+    </label>
+    <label for="password">Confirm Password
+        <input type="text" name="re-type-password" placeholder="password" required/>
+    </label>
+    <button type="submit">Register</button>
+    <p>Already a member? <a href="/login">Login</a></p>
+    
+    
+</form>
+
+
+<%- include("partials/footer"); -%>
