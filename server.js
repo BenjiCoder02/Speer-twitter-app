@@ -46,6 +46,7 @@ const globalSchema = new mongoose.Schema({
 })
 
 
+
 const Global = new mongoose.model("Global", globalSchema)
 
 userSchema.plugin(passportLocalMongoose);
@@ -59,7 +60,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-//Get & Post route handling
+// //**Get & Post route handling**\\
 app.get("/", function(req, res){
   res.render("home")
 })
@@ -72,6 +73,7 @@ app.get("/register", function(req, res){
   res.render("register");
 });
 
+//Render Home page on successful Authentication
 app.get("/twitterHome", function(req, res){
   
   if (req.isAuthenticated()){
@@ -91,10 +93,12 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 });
 
+//registration section
 app.post("/register", function(req, res){
+  //Conditional to validate Email using the validateEmail function from the end of my code file
   if(validateEmail(req.body.username) && req.body.password === req.body.retype_password){
 
-  
+  //Passport.js registration
   User.register({username: req.body.username}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
@@ -112,7 +116,7 @@ app.post("/register", function(req, res){
 });
 
 app.post("/login", function(req, res){
- 
+ //
   const user = new User({
     username: req.body.username,
     password: req.body.password
@@ -130,9 +134,11 @@ app.post("/login", function(req, res){
  
 });
 
+//Compose Posts 
 app.get("/tweet", function(req, res){
   res.render("tweet")
 })
+
 
 app.post("/tweet", function(req, res){
   
@@ -146,7 +152,10 @@ app.post("/tweet", function(req, res){
   })
 })
 
-
+//Path for direct messaging functionality
+app.get("/directmessage", function(req, res){
+  res.render("directMessage")
+})
 
 app.post("/delete", function(req, res){
   const deleteTitle = req.body.remove
@@ -160,16 +169,12 @@ app.post("/delete", function(req, res){
 })
 
 
-
-
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000.");
-});
-
-
 //Function to check email formatting
 function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
+
+app.listen(process.env.PORT || 3000, function() {
+  console.log("Server started on port 3000.");
+});

@@ -37,3 +37,19 @@ form button {
   display: flex;
   justify-content: space-between;
 }
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: auto;
+  min-height: 200px;
+  width: 300px;
+  margin: 5% auto;
+}
+
+.messageForm {
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+}

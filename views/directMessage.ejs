@@ -1,0 +1,21 @@
+<%- include("partials/header"); -%>
+
+<h1>Send a message privately</h1>
+<a href="/tweet">Tweet something</a><br />
+<a href="/logout">logout</a>
+
+<div class="message-container">
+    Messages
+    <form class="messageForm" action="/directmessage" method="POST">
+        <label for="to">Send a message to: 
+            <input type="text" placeholder="e.g someoneelse@gmail.com" name="toAddress">
+        </label>
+        <label for="message">Message body 
+            <textarea type="text" placeholder="message Content" name="message"></textarea>
+        </label> 
+     </form>
+</div>
+
+
+
+<%- include("partials/footer"); -%>
