@@ -1,0 +1,35 @@
+<%- include("partials/header"); -%>
+
+<h1>Hello <%-name.username%></h1>
+<a href="/tweet">Tweet something</a><br />
+<a href="/logout">logout</a>
+<div>
+    <% posts.forEach(function(post){ %>
+        <hr>
+        <h1>
+          <%=post.postTitle%>
+        </h1>
+        <p>
+          <%=post.postContent%>
+          <br />
+          
+          <%=post.postAuthor.username%>
+          
+          
+            <div>
+              <a  href="/update/<%=post.postTitle %>">Update</a>
+              <form class="delete" method="POST" action="/delete">
+                <input type="hidden" name="remove" value="<%- post.postTitle %>">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+    
+    
+        </p>
+        <hr>
+    
+    
+        <% }) %>
+</div>
+
+<%- include("partials/footer"); -%>
